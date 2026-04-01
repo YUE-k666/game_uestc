@@ -1,0 +1,123 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-I4D23gizoCOkCLjn7XnP7gxhjJpjjednJhs5tpRUv7F4vyhe",
+    "ANTHROPIC_BASE_URL": "https://api.ikuncode.cc",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "gpt-5.4",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "gpt-5.4",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "gpt-5.4",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(source:*)",
+      "Bash(conda activate InternAgent)",
+      "Bash(python:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(python3:*)",
+      "Bash(sqlite3:*)",
+      "Bash(xargs:*)",
+      "Bash(git checkout:*)",
+      "Bash(grep:*)",
+      "Bash(pgrep:*)",
+      "Bash(for f in idea_*/metrics.json)",
+      "Bash(do if [ -f \"$f\" ])",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(pip search:*)",
+      "Bash(pip index:*)",
+      "Bash(pip install:*)",
+      "Bash(gemini --help:*)",
+      "Bash(for db in \"/data_8T/wcx/LangAgent_gsk_v1/storage/databases/langagent.db\" \"/data_8T/wcx/LangAgent_gsk_v1/storage/databases/AutoTSF/langagent.db\" \"/data_8T/wcx/LangAgent_gsk_v1/storage/databases/default/langagent.db\" \"/data_8T/wcx/LangAgent_gsk_v1/storage/databases/AutoTSF_test/langagent.db\")",
+      "Bash(do:*)",
+      "Bash(then:*)",
+      "Bash(printenv:*)",
+      "WebSearch",
+      "WebFetch(domain:semanticscholar.readthedocs.io)",
+      "WebFetch(domain:pypi.org)",
+      "WebFetch(domain:www.semanticscholar.org)",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "Bash(curl:*)",
+      "Bash(LANGAGENT_S2_PROVIDER=official python:*)",
+      "Bash(PYTHONPATH=/data_8T/wcx/LangAgent_gsk_v1 LANGAGENT_S2_PROVIDER=official python:*)",
+      "Bash(PYTHONPATH=/data_8T/wcx/LangAgent_gsk_v1 LANGAGENT_S2_PROVIDER=legacy python:*)",
+      "Bash(PYTHONPATH=/data_8T/wcx/LangAgent_gsk_v1 LANGAGENT_S2_PROVIDER=official LANGAGENT_DB_PATH=/tmp/langagent_test.db python:*)",
+      "Bash(git -C /data_8T/wcx/LangAgent_gsk_v1 diff:*)",
+      "Bash(git -C /data_8T/wcx/LangAgent_gsk_v1 status:*)",
+      "Bash(chmod +x \"/data_8T/gsk/LangAgent_gsk_v5/scripts/run_autotsf_full_pipeline.sh\")",
+      "Bash(source /data1/anaconda3/etc/profile.d/conda.sh && conda activate InternAgent && bash \"/data_8T/gsk/LangAgent_gsk_v5/scripts/run_autotsf_full_pipeline.sh\" --help)",
+      "Bash(source /data1/anaconda3/etc/profile.d/conda.sh && conda activate InternAgent && bash \"/data_8T/gsk/LangAgent_gsk_v5/scripts/run_autotsf_full_pipeline.sh\" --workers 1 --iterations 1)",
+      "Bash(git -C \"/data_8T/gsk/LangAgent_gsk_v5\" diff -- tests/test_autotsf_full_pipeline.py scripts/run_autotsf_full_pipeline.sh)",
+      "Bash(bash -n \"/data_8T/gsk/LangAgent_gsk_v5/scripts/run_autotsf_full_pipeline.sh\")",
+      "Bash(source /data1/anaconda3/etc/profile.d/conda.sh && conda activate InternAgent && export LANGAGENT_DB_PATH=\"tests/data/autotsf_searchplan_validate/AutoTSF.db\" && export LANGAGENT_VECTOR_DB_PATH=\"tests/data/autotsf_searchplan_validate/vector/AutoTSF\" && export ANTHROPIC_API_KEY=\"sk-da6158a912e346a3bcea50218ede80d0\" && export ANTHROPIC_BASE_URL=\"https://dashscope.aliyuncs.com/apps/anthropic\" && export ANTHROPIC_DEFAULT_HAIKU_MODEL=\"qwen3-max\" && export ANTHROPIC_DEFAULT_SONNET_MODEL=\"qwen3-max\" && export ANTHROPIC_DEFAULT_OPUS_MODEL=\"qwen3-max\" && python - <<'PY'\nimport asyncio\nimport json\nfrom tests.test_autotsf_full_pipeline import \\(\n    setup_logging,\n    run_baseline_analyzer,\n    run_search_planner,\n    run_parallel_retrievers,\n    run_idea_forge,\n\\)\n\nasync def main\\(\\):\n    setup_logging\\(\\)\n    baseline_result = await run_baseline_analyzer\\(\"AutoTSF\"\\)\n    planner_result = await run_search_planner\\(\n        baseline_result=baseline_result,\n        planning_mode=\"diverse\",\n        previous_analysis=None,\n        iteration=1,\n    \\)\n    search_plans = planner_result.get\\(\"search_plans\", []\\)\n    print\\(\"\\\\n=== SEARCH PLANS ===\"\\)\n    print\\(f\"count={len\\(search_plans\\)}\"\\)\n    type_counts = {}\n    for i, plan in enumerate\\(search_plans, 1\\):\n        type_counts[plan['plan_type']] = type_counts.get\\(plan['plan_type'], 0\\) + 1\n        print\\(f\"[{i}] type={plan['plan_type']}\"\\)\n        print\\(f\"    title={plan['title']}\"\\)\n        print\\(f\"    keywords={plan.get\\('keywords'\\)}\"\\)\n        print\\(f\"    rationale_present={bool\\(\\(plan.get\\('rationale'\\) or ''\\).strip\\(\\)\\)}\"\\)\n    print\\(\"type_counts=\", json.dumps\\(type_counts, ensure_ascii=False\\)\\)\n\n    retrieval_results = await run_parallel_retrievers\\(search_plans, baseline_result.get\\(\"baseline\"\\)\\)\n    print\\(\"\\\\n=== RETRIEVAL SUMMARY ===\"\\)\n    for i, item in enumerate\\(retrieval_results, 1\\):\n        print\\(f\"[{i}] papers={len\\(item.get\\('papers', []\\)\\)} error={item.get\\('error'\\)}\"\\)\n\n    idea_forge_result = await run_idea_forge\\(baseline_result, retrieval_results\\)\n    ideas = idea_forge_result.get\\(\"ideas\", []\\)\n    print\\(\"\\\\n=== IDEAS ===\"\\)\n    print\\(f\"count={len\\(ideas\\)}\"\\)\n    for i, idea in enumerate\\(ideas, 1\\):\n        eval_info = idea.get\\('evaluation'\\) or {}\n        print\\(f\"[{i}] {idea.get\\('title'\\)}\"\\)\n        print\\(f\"    recommendation={eval_info.get\\('recommendation'\\)} overall={eval_info.get\\('overall_score'\\)}\"\\)\n        print\\(f\"    keywords={idea.get\\('keywords'\\)}\"\\)\n        print\\(f\"    referenced_papers={idea.get\\('referenced_papers'\\)}\"\\)\n\nasyncio.run\\(main\\(\\)\\)\nPY)",
+      "Bash(source /data1/anaconda3/etc/profile.d/conda.sh && conda activate InternAgent && export LANGAGENT_DB_PATH=\"tests/data/autotsf_searchplan_validate/AutoTSF.db\" && export LANGAGENT_VECTOR_DB_PATH=\"tests/data/autotsf_searchplan_validate/vector/AutoTSF\" && export ANTHROPIC_API_KEY=\"sk-da6158a912e346a3bcea50218ede80d0\" && export ANTHROPIC_BASE_URL=\"https://dashscope.aliyuncs.com/apps/anthropic\" && export ANTHROPIC_DEFAULT_HAIKU_MODEL=\"qwen3-max\" && export ANTHROPIC_DEFAULT_SONNET_MODEL=\"qwen3-max\" && export ANTHROPIC_DEFAULT_OPUS_MODEL=\"qwen3-max\" && python - <<'PY'\nimport asyncio\nimport json\nimport sys\nfrom pathlib import Path\nsys.path.insert\\(0, str\\(Path\\('/data_8T/gsk/LangAgent_gsk_v5'\\)\\)\\)\nfrom tests.test_autotsf_full_pipeline import \\(\n    setup_logging,\n    run_baseline_analyzer,\n    run_search_planner,\n    run_parallel_retrievers,\n    run_idea_forge,\n\\)\n\nasync def main\\(\\):\n    setup_logging\\(\\)\n    baseline_result = await run_baseline_analyzer\\(\"AutoTSF\"\\)\n    planner_result = await run_search_planner\\(\n        baseline_result=baseline_result,\n        planning_mode=\"diverse\",\n        previous_analysis=None,\n        iteration=1,\n    \\)\n    search_plans = planner_result.get\\(\"search_plans\", []\\)\n    print\\(\"\\\\n=== SEARCH PLANS ===\"\\)\n    print\\(f\"count={len\\(search_plans\\)}\"\\)\n    type_counts = {}\n    for i, plan in enumerate\\(search_plans, 1\\):\n        type_counts[plan['plan_type']] = type_counts.get\\(plan['plan_type'], 0\\) + 1\n        print\\(f\"[{i}] type={plan['plan_type']}\"\\)\n        print\\(f\"    title={plan['title']}\"\\)\n        print\\(f\"    keywords={plan.get\\('keywords'\\)}\"\\)\n        print\\(f\"    rationale_present={bool\\(\\(plan.get\\('rationale'\\) or ''\\).strip\\(\\)\\)}\"\\)\n    print\\(\"type_counts=\", json.dumps\\(type_counts, ensure_ascii=False\\)\\)\n\n    retrieval_results = await run_parallel_retrievers\\(search_plans, baseline_result.get\\(\"baseline\"\\)\\)\n    print\\(\"\\\\n=== RETRIEVAL SUMMARY ===\"\\)\n    for i, item in enumerate\\(retrieval_results, 1\\):\n        print\\(f\"[{i}] papers={len\\(item.get\\('papers', []\\)\\)} error={item.get\\('error'\\)}\"\\)\n\n    idea_forge_result = await run_idea_forge\\(baseline_result, retrieval_results\\)\n    ideas = idea_forge_result.get\\(\"ideas\", []\\)\n    print\\(\"\\\\n=== IDEAS ===\"\\)\n    print\\(f\"count={len\\(ideas\\)}\"\\)\n    for i, idea in enumerate\\(ideas, 1\\):\n        eval_info = idea.get\\('evaluation'\\) or {}\n        print\\(f\"[{i}] {idea.get\\('title'\\)}\"\\)\n        print\\(f\"    recommendation={eval_info.get\\('recommendation'\\)} overall={eval_info.get\\('overall_score'\\)}\"\\)\n        print\\(f\"    keywords={idea.get\\('keywords'\\)}\"\\)\n        print\\(f\"    referenced_papers={idea.get\\('referenced_papers'\\)}\"\\)\n\nasyncio.run\\(main\\(\\)\\)\nPY)",
+      "Bash(source /data1/anaconda3/etc/profile.d/conda.sh && conda activate InternAgent && export LANGAGENT_DB_PATH=\"tests/data/autotsf_searchplan_validate/AutoTSF.db\" && export LANGAGENT_VECTOR_DB_PATH=\"tests/data/autotsf_searchplan_validate/vector/AutoTSF\" && export ANTHROPIC_API_KEY=\"sk-da6158a912e346a3bcea50218ede80d0\" && export ANTHROPIC_BASE_URL=\"https://dashscope.aliyuncs.com/apps/anthropic\" && export ANTHROPIC_DEFAULT_HAIKU_MODEL=\"qwen3-max\" && export ANTHROPIC_DEFAULT_SONNET_MODEL=\"qwen3-max\" && export ANTHROPIC_DEFAULT_OPUS_MODEL=\"qwen3-max\" && python - <<'PY'\nimport asyncio\nimport importlib.util\nimport json\nfrom pathlib import Path\n\nmodule_path = Path\\('/data_8T/gsk/LangAgent_gsk_v5/tests/test_autotsf_full_pipeline.py'\\)\nspec = importlib.util.spec_from_file_location\\('test_autotsf_full_pipeline', module_path\\)\nmodule = importlib.util.module_from_spec\\(spec\\)\nspec.loader.exec_module\\(module\\)\n\nasync def main\\(\\):\n    module.setup_logging\\(\\)\n    baseline_result = await module.run_baseline_analyzer\\('AutoTSF'\\)\n    planner_result = await module.run_search_planner\\(\n        baseline_result=baseline_result,\n        planning_mode='diverse',\n        previous_analysis=None,\n        iteration=1,\n    \\)\n    search_plans = planner_result.get\\('search_plans', []\\)\n    print\\('\\\\n=== SEARCH PLANS ==='\\)\n    print\\(f'count={len\\(search_plans\\)}'\\)\n    type_counts = {}\n    for i, plan in enumerate\\(search_plans, 1\\):\n        type_counts[plan['plan_type']] = type_counts.get\\(plan['plan_type'], 0\\) + 1\n        print\\(f'[{i}] type={plan[\"plan_type\"]}'\\)\n        print\\(f'    title={plan[\"title\"]}'\\)\n        print\\(f'    keywords={plan.get\\(\"keywords\"\\)}'\\)\n        print\\(f'    rationale_present={bool\\(\\(plan.get\\(\"rationale\"\\) or \"\"\\).strip\\(\\)\\)}'\\)\n    print\\('type_counts=', json.dumps\\(type_counts, ensure_ascii=False\\)\\)\n\n    retrieval_results = await module.run_parallel_retrievers\\(search_plans, baseline_result.get\\('baseline'\\)\\)\n    print\\('\\\\n=== RETRIEVAL SUMMARY ==='\\)\n    for i, item in enumerate\\(retrieval_results, 1\\):\n        print\\(f'[{i}] papers={len\\(item.get\\(\"papers\", []\\)\\)} error={item.get\\(\"error\"\\)}'\\)\n\n    idea_forge_result = await module.run_idea_forge\\(baseline_result, retrieval_results\\)\n    ideas = idea_forge_result.get\\('ideas', []\\)\n    print\\('\\\\n=== IDEAS ==='\\)\n    print\\(f'count={len\\(ideas\\)}'\\)\n    for i, idea in enumerate\\(ideas, 1\\):\n        eval_info = idea.get\\('evaluation'\\) or {}\n        print\\(f'[{i}] {idea.get\\(\"title\"\\)}'\\)\n        print\\(f'    recommendation={eval_info.get\\(\"recommendation\"\\)} overall={eval_info.get\\(\"overall_score\"\\)}'\\)\n        print\\(f'    keywords={idea.get\\(\"keywords\"\\)}'\\)\n        print\\(f'    referenced_papers={idea.get\\(\"referenced_papers\"\\)}'\\)\n\nasyncio.run\\(main\\(\\)\\)\nPY)",
+      "Bash(kill -STOP 3730945 && ps -o pid,stat,cmd -p 3730945)",
+      "Bash(ls -lh \"/data_8T/gsk/LangAgent_gsk_v5/tasks/AutoTSF/workspace/full_config/experiments/idea_20260321_92790520\" && printf '\\\\n---\\\\n' && ls -lh \"/data_8T/gsk/LangAgent_gsk_v5/tasks/AutoTSF/workspace/full_config/experiments/idea_20260321_3063c3e5\")",
+      "Bash(du -ah \"/data_8T/gsk/LangAgent_gsk_v5/tasks/AutoTSF/workspace/full_config/experiments/idea_20260321_92790520\" | sort -hr | head -n 20 && printf '\\\\n---\\\\n' && du -ah \"/data_8T/gsk/LangAgent_gsk_v5/tasks/AutoTSF/workspace/full_config/experiments/idea_20260321_3063c3e5\" | sort -hr | head -n 20)",
+      "Bash(ls -lah \"/data_8T/gsk/LangAgent_gsk_v5/logs\" && printf '\\\\n---\\\\n' && ls -lah \"/data_8T/gsk/LangAgent_gsk_v5/tests/data/autotsf_arxiv_stage_1_322\")",
+      "Bash(PYTHONPATH=\"/data_8T/gsk/LangAgent_gsk_v5\" source /data1/anaconda3/etc/profile.d/conda.sh && conda activate InternAgent && export PYTHONPATH=\"/data_8T/gsk/LangAgent_gsk_v5\" && python -m py_compile \"/data_8T/gsk/LangAgent_gsk_v5/src/agents/idea_auto_optimizer/nodes.py\" \"/data_8T/gsk/LangAgent_gsk_v5/tests/test_literature_retriever.py\" \"/data_8T/gsk/LangAgent_gsk_v5/tests/test_no_searchplan_searchplan_diagnostic.py\" \"/data_8T/gsk/LangAgent_gsk_v5/tests/test_retrieval_diagnostic.py\")",
+      "Bash(source /data1/anaconda3/etc/profile.d/conda.sh && conda activate InternAgent && export PYTHONPATH=\"/data_8T/gsk/LangAgent_gsk_v5\" && python \"/data_8T/gsk/LangAgent_gsk_v5/tests/test_literature_retriever.py\")",
+      "Bash(git -C \"/data_8T/gsk/LangAgent_gsk_v5/.claude/worktrees/agent-a476c0f5\" status --short)",
+      "Bash(git:*)",
+      "mcp__jina-mcp-server__read_url",
+      "mcp__jina-mcp-server__search_web",
+      "WebFetch(domain:www.builder.io)",
+      "WebFetch(domain:www.datacamp.com)",
+      "Bash(WORKERS=2 ITERATIONS=1 bash /data_8T/gsk/LangAgent_gsk_v5/scripts/run_autotsf_full_pipeline_no_searchplan.sh)",
+      "Skill(speckit.constitution)",
+      "Bash(\"/data1/gsk/LangAgent_gsk_v5/.specify/scripts/bash/create-new-feature.sh\" \"@src/agents/literature_retriever/nodes.py 这个脚本中在调用的from src.tools.arxiv_hybrid_retriever import get_arxiv_hybrid_retriever:*)",
+      "Bash(\"/data1/gsk/LangAgent_gsk_v5/.specify/scripts/bash/check-prerequisites.sh\" --json --paths-only)",
+      "Bash(\"/data1/gsk/LangAgent_gsk_v5/.specify/scripts/bash/setup-plan.sh\" --json)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "(notify-send 'Claude Code' 'Task finished — ready for next prompt' 2>/dev/null &); (paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null &); curl -s -X POST 'https://open.feishu.cn/open-apis/bot/v2/hook/2c8aaa1f-1aa9-46ce-b7d7-cda9af100d2e' -H 'Content-Type: application/json' -d '{\"msg_type\":\"text\",\"content\":{\"text\":\"Claude Code: Task finished — ready for next prompt\"}}'",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "permission_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "(notify-send 'Claude Code' 'Waiting for permission' 2>/dev/null &); (paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null &); curl -s -X POST 'https://open.feishu.cn/open-apis/bot/v2/hook/2c8aaa1f-1aa9-46ce-b7d7-cda9af100d2e' -H 'Content-Type: application/json' -d '{\"msg_type\":\"text\",\"content\":{\"text\":\"Claude Code: Waiting for permission\"}}'",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "(notify-send 'Claude Code' 'Response complete' 2>/dev/null &); (paplay /usr/share/sounds/freedesktop/stereo/complete.oga 2>/dev/null &); curl -s -X POST 'https://open.feishu.cn/open-apis/bot/v2/hook/2c8aaa1f-1aa9-46ce-b7d7-cda9af100d2e' -H 'Content-Type: application/json' -d '{\"msg_type\":\"text\",\"content\":{\"text\":\"Claude Code: Response complete\"}}'",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/ikuncodeline/ikuncodeline",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": false,
+    "code-simplifier@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "playwright@claude-plugins-official": false,
+    "superpowers@claude-plugins-official": false
+  },
+  "effortLevel": "high"
+}
