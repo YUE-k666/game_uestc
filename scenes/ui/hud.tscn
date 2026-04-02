@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/time_controls.gd" id="1"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+offset_left = 10.0
+offset_top = 5.0
+offset_right = 1270.0
+offset_bottom = 35.0
+
+[node name="DateLabel" type="Label" parent="TopBar"]
+custom_minimum_size = Vector2(300, 0)
+text = "第1周 周一 早晨"
+
+[node name="Spacer" type="Control" parent="TopBar"]
+size_flags_horizontal = 3
+
+[node name="SpeedLabel" type="Label" parent="TopBar"]
+text = "速度:"
+
+[node name="SpeedControls" type="HBoxContainer" parent="TopBar"]
+script = ExtResource("1")
+
+[node name="Sidebar" type="PanelContainer" parent="."]
+visible = false
+offset_left = 880.0
+offset_top = 40.0
+offset_right = 1270.0
+offset_bottom = 710.0
+
+[node name="SidebarContent" type="VBoxContainer" parent="Sidebar"]
+
+[node name="SidebarToggle" type="Button" parent="."]
+offset_left = 1230.0
+offset_top = 40.0
+offset_right = 1270.0
+offset_bottom = 70.0
+text = "▶"
+
+[node name="MiniBar" type="HBoxContainer" parent="."]
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 870.0
+offset_bottom = 60.0
+
+[node name="SatisfactionLabel" type="Label" parent="MiniBar"]
+text = "满意度: --"
+
+[node name="BudgetLabel" type="Label" parent="MiniBar"]
+text = "预算: --"
+
+[node name="WeekLabel" type="Label" parent="MiniBar"]
+text = "周: --"

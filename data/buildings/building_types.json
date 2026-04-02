@@ -1,0 +1,34 @@
+{
+  "建筑类型": {
+    "cafeteria": {
+      "name": "食堂",
+      "color": "#ff9800",
+      "is_interactable": true,
+      "default_open_periods": [0, 2, 4]
+    },
+    "dormitory": {
+      "name": "宿舍",
+      "color": "#4caf50",
+      "is_interactable": true,
+      "default_open_periods": [6]
+    },
+    "teaching": {
+      "name": "教学楼",
+      "color": "#2196f3",
+      "is_interactable": false,
+      "default_open_periods": [1, 3, 5]
+    },
+    "library": {
+      "name": "图书馆",
+      "color": "#9c27b0",
+      "is_interactable": false,
+      "default_open_periods": [1, 2, 3, 4, 5]
+    },
+    "other": {
+      "name": "其他",
+      "color": "#607d8b",
+      "is_interactable": false,
+      "default_open_periods": [0, 2, 4]
+    }
+  }
+}
