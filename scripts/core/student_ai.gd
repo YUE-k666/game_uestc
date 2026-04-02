@@ -123,8 +123,38 @@ func _get_cafeteria_system() -> Node:
 	# 尝试直接查找
 	return get_node_or_null("/root/Main/Systems/CafeteriaSystem")
 
-## 选择宿舍
+## 选择宿舍 — 返回学生所属宿舍楼
 func _choose_dormitory(student: Student) -> String:
-	# 返回学生所属宿舍楼
 	var dorm_id := "dorm_group_%d_b1" % student.assigned_group
+
+	# 宿舍满意度计算
+	_update_dormitory_satisfaction(student)
+
 	return dorm_id
+
+## 更新宿舍满意度 — 基于组团参数计算每日满意度变化
+func _update_dormitory_satisfaction(student: Student) -> void:
+	var dorm_system := _get_dormitory_system()
+	if not dorm_system:
+		return
+
+	var impact := dorm_system.calculate_satisfaction_impact(student.assigned_group)
+	var difficulty := GameConfig.get_difficulty_config()
+	var tolerance: float = float(difficulty.get("student_tolerance", 1.0))
+
+	# 满意度变化 = 影响 × 宽容度
+	var change := impact * tolerance * 0.1
+	student.satisfaction_dormitory = clampf(student.satisfaction_dormitory + change, 0.0, 100.0)
+
+	# 门禁超时检查
+	if student.curfew_violated:
+		student.satisfaction_dormitory -= 5.0 * tolerance
+		student.curfew_violated = false
+
+	GameEvents.satisfaction_category_changed.emit("dormitory", student.satisfaction_dormitory)
+
+func _get_dormitory_system() -> Node:
+	var systems := get_tree().get_first_node_in_group("systems")
+	if systems:
+		return systems.get_node_or_null("DormitorySystem")
+	return get_node_or_null("/root/Main/Systems/DormitorySystem")

@@ -1,0 +1,28 @@
+[gd_scene format=3]
+
+[node name="Dormitory" type="Node2D"]
+
+[node name="Sprite" type="ColorRect" parent="."]
+offset_right = 192.0
+offset_bottom = 144.0
+color = Color(0.3, 0.69, 0.31, 1)
+
+[node name="NameLabel" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 50.0
+offset_right = 160.0
+offset_bottom = 80.0
+text = "宿舍楼"
+horizontal_alignment = 1
+
+[node name="Icons" type="HBoxContainer" parent="."]
+offset_left = 40.0
+offset_top = 85.0
+offset_right = 160.0
+offset_bottom = 105.0
+
+[node name="ACIcon" type="Label" parent="Icons"]
+text = "空调"
+
+[node name="BathIcon" type="Label" parent="Icons"]
+text = "独卫"

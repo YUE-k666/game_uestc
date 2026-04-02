@@ -1,0 +1,114 @@
+[gd_scene format=3]
+
+[node name="DormitoryPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 450)
+offset_left = 880.0
+offset_top = 40.0
+offset_right = 1270.0
+offset_bottom = 490.0
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBox"]
+layout_mode = 2
+text = "宿舍管理"
+
+[node name="HotWaterContainer" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="HotWaterLabel" type="Label" parent="VBox/HotWaterContainer"]
+layout_mode = 2
+text = "热水时段:"
+
+[node name="HotWaterStartSlider" type="HSlider" parent="VBox/HotWaterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 6.0
+step = 1.0
+value = 2.0
+
+[node name="HotWaterEndSlider" type="HSlider" parent="VBox/HotWaterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 2.0
+max_value = 6.0
+step = 1.0
+value = 6.0
+
+[node name="ElectricityContainer" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="ElecLabel" type="Label" parent="VBox/ElectricityContainer"]
+layout_mode = 2
+text = "电费单价:"
+
+[node name="ElecSlider" type="HSlider" parent="VBox/ElectricityContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.3
+max_value = 1.0
+step = 0.05
+value = 0.55
+
+[node name="ElecValue" type="Label" parent="VBox/ElectricityContainer"]
+layout_mode = 2
+text = "0.55"
+
+[node name="MaintenanceContainer" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="MaintLabel" type="Label" parent="VBox/MaintenanceContainer"]
+layout_mode = 2
+text = "维修频率:"
+
+[node name="MaintSlider" type="HSlider" parent="VBox/MaintenanceContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 5.0
+step = 1.0
+value = 3.0
+
+[node name="CleanContainer" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="CleanLabel" type="Label" parent="VBox/CleanContainer"]
+layout_mode = 2
+text = "清洁等级:"
+
+[node name="CleanSlider" type="HSlider" parent="VBox/CleanContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 5.0
+step = 1.0
+value = 3.0
+
+[node name="CurfewContainer" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="CurfewLabel" type="Label" parent="VBox/CurfewContainer"]
+layout_mode = 2
+text = "门禁时间:"
+
+[node name="CurfewSlider" type="HSlider" parent="VBox/CurfewContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 4.0
+max_value = 6.0
+step = 1.0
+value = 5.0
+
+[node name="CostInfo" type="Label" parent="VBox"]
+layout_mode = 2
+text = "预估月运营成本: --"
+
+[node name="SatPrediction" type="Label" parent="VBox"]
+layout_mode = 2
+text = "预估满意度影响: --"
+
+[node name="CloseButton" type="Button" parent="VBox"]
+layout_mode = 2
+text = "关闭"
