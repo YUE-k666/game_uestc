@@ -1,0 +1,62 @@
+{
+  "时段定义": [
+    {
+      "index": 0,
+      "name": "早晨",
+      "display_name": "06:45-09:00",
+      "duration_real_seconds": 15,
+      "学生目标": "cafeteria"
+    },
+    {
+      "index": 1,
+      "name": "上午",
+      "display_name": "09:00-11:00",
+      "duration_real_seconds": 20,
+      "学生目标": "teaching"
+    },
+    {
+      "index": 2,
+      "name": "中午",
+      "display_name": "11:00-13:00",
+      "duration_real_seconds": 15,
+      "学生目标": "cafeteria"
+    },
+    {
+      "index": 3,
+      "name": "下午前段",
+      "display_name": "13:00-15:30",
+      "duration_real_seconds": 20,
+      "学生目标": "teaching"
+    },
+    {
+      "index": 4,
+      "name": "傍晚",
+      "display_name": "15:30-18:00",
+      "duration_real_seconds": 15,
+      "学生目标": "cafeteria"
+    },
+    {
+      "index": 5,
+      "name": "晚上",
+      "display_name": "18:00-22:00",
+      "duration_real_seconds": 25,
+      "学生目标": "teaching"
+    },
+    {
+      "index": 6,
+      "name": "深夜",
+      "display_name": "22:00-06:45",
+      "duration_real_seconds": 10,
+      "学生目标": "dormitory"
+    }
+  ],
+  "速度倍率": {
+    "暂停": 0,
+    "正常": 1,
+    "快进": 2,
+    "极速": 4
+  },
+  "每日时段数": 7,
+  "每周天数": 7,
+  "每学期周数": 18
+}

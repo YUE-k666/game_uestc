@@ -1,0 +1,35 @@
+{
+  "简单": {
+    "id": "easy",
+    "initial_budget": 700000.0,
+    "wallet_replenish_base": 2000.0,
+    "wallet_replenish_variance": 0.2,
+    "student_tolerance": 0.8,
+    "event_frequency": 0.6,
+    "performance_coefficient": 1.2,
+    "utility_abandon_threshold": 0.2,
+    "description": "宽裕的预算，宽容的学生，较少的突发事件"
+  },
+  "普通": {
+    "id": "normal",
+    "initial_budget": 500000.0,
+    "wallet_replenish_base": 1500.0,
+    "wallet_replenish_variance": 0.2,
+    "student_tolerance": 1.0,
+    "event_frequency": 1.0,
+    "performance_coefficient": 1.0,
+    "utility_abandon_threshold": 0.3,
+    "description": "标准难度，需要合理的资源分配"
+  },
+  "困难": {
+    "id": "hard",
+    "initial_budget": 300000.0,
+    "wallet_replenish_base": 1000.0,
+    "wallet_replenish_variance": 0.2,
+    "student_tolerance": 1.3,
+    "event_frequency": 1.5,
+    "performance_coefficient": 0.8,
+    "utility_abandon_threshold": 0.4,
+    "description": "紧张的资金，挑剔的学生，频繁的危机"
+  }
+}

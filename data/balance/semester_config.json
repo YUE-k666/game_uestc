@@ -1,0 +1,35 @@
+{
+  "每学期周数": 18,
+  "评级阈值": {
+    "S": {
+      "satisfaction_min": 90,
+      "profit_achievement_min": 90
+    },
+    "A": {
+      "satisfaction_min": 80,
+      "profit_achievement_min": 80
+    },
+    "B": {
+      "satisfaction_min": 70,
+      "profit_achievement_min": 70
+    },
+    "C": {
+      "satisfaction_min": 60,
+      "profit_achievement_min": 60
+    },
+    "F": {
+      "satisfaction_min": 0,
+      "profit_achievement_min": 0
+    }
+  },
+  "基准预算": 500000.0,
+  "满意度贡献系数": 0.3,
+  "声望贡献系数": 0.2,
+  "评级说明": {
+    "S": "卓越运营，学校以你为荣",
+    "A": "优秀管理，师生好评如潮",
+    "B": "合格运营，中规中矩",
+    "C": "勉强及格，需要改进",
+    "F": "不及格，后勤面临整顿"
+  }
+}
