@@ -1,0 +1,22 @@
+{
+  "窗口模板": {
+    "基础窗口": {
+      "service_speed": 30.0,
+      "staff_skill_level": 2,
+      "queue_max_length": 20,
+      "description": "标准服务窗口"
+    },
+    "快速窗口": {
+      "service_speed": 45.0,
+      "staff_skill_level": 3,
+      "queue_max_length": 15,
+      "description": "服务速度较快，但排队空间较小"
+    },
+    "精品窗口": {
+      "service_speed": 20.0,
+      "staff_skill_level": 4,
+      "queue_max_length": 25,
+      "description": "菜品质量高，但服务较慢"
+    }
+  }
+}

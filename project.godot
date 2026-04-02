@@ -21,6 +21,11 @@ config/icon="res://icon.svg"
 GameEvents="*res://scripts/autoload/game_events.gd"
 GameConfig="*res://scripts/autoload/game_config.gd"
 TimeManager="*res://scripts/autoload/time_manager.gd"
+SatisfactionManager="*res://scripts/autoload/satisfaction_manager.gd"
+EconomyManager="*res://scripts/autoload/economy_manager.gd"
+ReputationManager="*res://scripts/autoload/reputation_manager.gd"
+EventManager="*res://scripts/autoload/event_manager.gd"
+SaveManager="*res://scripts/autoload/save_manager.gd"
 
 [display]
 
