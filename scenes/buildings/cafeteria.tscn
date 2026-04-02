@@ -1,0 +1,12 @@
+[gd_scene format=3]
+
+[node name="Cafeteria" type="Node2D"]
+
+[node name="WindowsContainer" type="VBoxContainer" parent="."]
+offset_right = 200.0
+offset_bottom = 300.0
+
+[node name="TitleLabel" type="Label" parent="WindowsContainer"]
+text = "食堂窗口"
+
+[node name="WindowsList" type="VBoxContainer" parent="WindowsContainer"]

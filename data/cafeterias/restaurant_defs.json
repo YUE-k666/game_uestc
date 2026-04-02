@@ -1,0 +1,85 @@
+{
+  "餐厅": [
+    {
+      "restaurant_id": "yinxing_yinhua",
+      "restaurant_name": "银桦餐厅",
+      "area": "银杏苑",
+      "floors": [1],
+      "window_count": 8,
+      "menu_scope": ["general", "sichuan"],
+      "building_id": "yinxing_yinhua"
+    },
+    {
+      "restaurant_id": "yinxing_zijing",
+      "restaurant_name": "紫荆餐厅",
+      "area": "银杏苑",
+      "floors": [1],
+      "window_count": 8,
+      "menu_scope": ["general", "noodle"],
+      "building_id": "yinxing_zijing"
+    },
+    {
+      "restaurant_id": "sixue_furong",
+      "restaurant_name": "芙蓉餐厅",
+      "area": "思学苑",
+      "floors": [1],
+      "window_count": 10,
+      "menu_scope": ["general", "sichuan", "staple"],
+      "building_id": "sixue_furong"
+    },
+    {
+      "restaurant_id": "sixue_xuezi",
+      "restaurant_name": "学子餐厅",
+      "area": "思学苑",
+      "floors": [1],
+      "window_count": 10,
+      "menu_scope": ["general", "noodle"],
+      "building_id": "sixue_xuezi"
+    },
+    {
+      "restaurant_id": "chunhui_siyuan",
+      "restaurant_name": "思源餐厅",
+      "area": "春晖苑",
+      "floors": [1],
+      "window_count": 8,
+      "menu_scope": ["general", "staple"],
+      "building_id": "chunhui_siyuan"
+    },
+    {
+      "restaurant_id": "chunhui_jiayuan",
+      "restaurant_name": "家园餐厅",
+      "area": "春晖苑",
+      "floors": [1],
+      "window_count": 8,
+      "menu_scope": ["general", "sichuan"],
+      "building_id": "chunhui_jiayuan"
+    },
+    {
+      "restaurant_id": "xibei",
+      "restaurant_name": "西北餐厅",
+      "area": "春晖苑",
+      "floors": [1],
+      "window_count": 6,
+      "menu_scope": ["noodle", "staple"],
+      "building_id": "xibei"
+    },
+    {
+      "restaurant_id": "chaoyang_1f",
+      "restaurant_name": "朝阳餐厅(1楼)",
+      "area": "朝阳",
+      "floors": [1],
+      "window_count": 10,
+      "menu_scope": ["general", "sichuan", "staple", "noodle"],
+      "building_id": "chaoyang_1f"
+    },
+    {
+      "restaurant_id": "qingzhen",
+      "restaurant_name": "清真餐厅",
+      "area": "春晖苑",
+      "floors": [1],
+      "window_count": 4,
+      "menu_scope": ["halal"],
+      "building_id": "qingzhen"
+    }
+  ]
+}

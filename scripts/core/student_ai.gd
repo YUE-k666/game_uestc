@@ -77,14 +77,51 @@ func _choose_target_building(student: Student, target_type: String) -> String:
 			)
 	return ""
 
-## 选择食堂（后续 Phase 4 会用效用模型替换）
+## 选择食堂 — 效用模型：遍历所有开放窗口，选择最高效用
 func _choose_cafeteria(student: Student) -> String:
-	if _pathfinding and _pathfinding._campus_map:
-		return _pathfinding.find_nearest_building(
-			Vector2(student.grid_position.x, student.grid_position.y),
-			"cafeteria"
-		)
-	return ""
+	var cafeteria_system := _get_cafeteria_system()
+	if not cafeteria_system:
+		return ""
+
+	var all_restaurants := cafeteria_system.get_all_restaurants()
+	var threshold: float = float(GameConfig.game_params.get("放弃阈值", 0.3))
+	var difficulty := GameConfig.get_difficulty_config()
+	threshold = float(difficulty.get("utility_abandon_threshold", threshold))
+
+	var best_utility := -1.0
+	var best_window_id := ""
+	var best_restaurant_id := ""
+
+	for rid in all_restaurants:
+		var c: Cafeteria = all_restaurants[rid]
+		if not c.is_open_at(TimeManager.current_period):
+			continue
+		for wdata in c.windows:
+			var utility := cafeteria_system.get_window_utility(wdata, student)
+			if utility > best_utility:
+				best_utility = utility
+				best_window_id = wdata.get("window_id", "")
+				best_restaurant_id = rid
+
+	# 效用低于阈值则放弃就餐
+	if best_utility < threshold:
+		student.satisfaction_cafeteria -= 3.0
+		GameEvents.satisfaction_category_changed.emit("cafeteria", student.satisfaction_cafeteria)
+		return ""
+
+	# 加入排队
+	if best_window_id != "":
+		cafeteria_system.add_student_to_queue(best_window_id, student.id)
+		student.state = "queuing_cafeteria"
+
+	return best_restaurant_id
+
+func _get_cafeteria_system() -> Node:
+	var systems := get_tree().get_first_node_in_group("systems")
+	if systems:
+		return systems.get_node_or_null("CafeteriaSystem")
+	# 尝试直接查找
+	return get_node_or_null("/root/Main/Systems/CafeteriaSystem")
 
 ## 选择宿舍
 func _choose_dormitory(student: Student) -> String:
