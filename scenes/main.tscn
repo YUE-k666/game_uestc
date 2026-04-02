@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2"]
 
 [node name="Main" type="Node2D"]
-script = ExtResource("res://scripts/game_controller.gd")
 
 [node name="CampusMap" parent="." instance=ExtResource("1")]
 
@@ -13,38 +12,16 @@ script = ExtResource("res://scripts/game_controller.gd")
 [node name="StudentManager" type="Node" parent="Systems"]
 script = ExtResource("res://scripts/systems/student_manager.gd")
 
-[node name="StudentAI" type="Node" parent="Systems"]
-script = ExtResource("res://scripts/core/student_ai.gd")
-
-[node name="PathfindingHelper" type="Node" parent="Systems"]
-script = ExtResource("res://scripts/map/pathfinding_helper.gd")
-
 [node name="CafeteriaSystem" type="Node" parent="Systems"]
 script = ExtResource("res://scripts/systems/cafeteria_system.gd")
 
 [node name="DormitorySystem" type="Node" parent="Systems"]
 script = ExtResource("res://scripts/systems/dormitory_system.gd")
 
-[node name="UpgradeSystem" type="Node" parent="Systems"]
-script = ExtResource("res://scripts/systems/upgrade_system.gd")
-
 [node name="EvaluationSystem" type="Node" parent="Systems"]
 script = ExtResource("res://scripts/systems/evaluation_system.gd")
-
-[node name="BuildingPanelController" type="Node" parent="Systems"]
-script = ExtResource("res://scripts/ui/building_panel_controller.gd")
-
-[node name="DashboardController" type="Node" parent="Systems"]
-script = ExtResource("res://scripts/ui/dashboard_controller.gd")
-
-[node name="EventLog" type="Node" parent="Systems"]
-script = ExtResource("res://scripts/ui/event_log.gd")
-
-[node name="TutorialSystem" type="Node" parent="Systems"]
-script = ExtResource("res://scripts/ui/tutorial_system.gd")
 
 [node name="StudentRenderer" type="Node2D" parent="."]
 script = ExtResource("res://scripts/map/student_renderer.gd")
 
 [node name="HUD" parent="." instance=ExtResource("2")]
-script = ExtResource("res://scripts/ui/hud_controller.gd")
