@@ -1,0 +1,73 @@
+[gd_scene format=3]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18, 0.35, 0.15, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 80.0
+offset_right = 990.0
+offset_bottom = 160.0
+text = "重生之我在电子科大干后勤"
+horizontal_alignment = 1
+add_theme_font_size_override("font_size", 32)
+
+[node name="Subtitle" type="Label" parent="."]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 170.0
+offset_right = 890.0
+offset_bottom = 200.0
+text = "校园后勤管理模拟游戏"
+horizontal_alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 280.0
+offset_right = 840.0
+offset_bottom = 500.0
+
+[node name="NewGameButton" type="Button" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 50)
+text = "新游戏"
+
+[node name="ContinueButton" type="Button" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 50)
+text = "继续游戏"
+
+[node name="SettingsButton" type="Button" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 50)
+text = "设置"
+
+[node name="QuitButton" type="Button" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 50)
+text = "退出"
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 680.0
+offset_right = 740.0
+offset_bottom = 710.0
+text = "v0.1.0 MVP"
+horizontal_alignment = 1

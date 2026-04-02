@@ -1,0 +1,130 @@
+[gd_scene format=3]
+
+[node name="DifficultySelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18, 0.35, 0.15, 1)
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 60.0
+offset_right = 890.0
+offset_bottom = 110.0
+text = "选择难度"
+horizontal_alignment = 1
+add_theme_font_size_override("font_size", 24)
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 160.0
+offset_right = 1140.0
+offset_bottom = 560.0
+
+[node name="EasyPanel" type="PanelContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBox" type="VBoxContainer" parent="HBox/EasyPanel"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBox/EasyPanel/VBox"]
+layout_mode = 2
+text = "简单"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="HBox/EasyPanel/VBox"]
+layout_mode = 2
+text = "宽裕的预算
+宽容的学生
+较少的突发事件"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Budget" type="Label" parent="HBox/EasyPanel/VBox"]
+layout_mode = 2
+text = "初始预算: 70万"
+horizontal_alignment = 1
+
+[node name="SelectButton" type="Button" parent="HBox/EasyPanel/VBox"]
+layout_mode = 2
+text = "选择"
+
+[node name="NormalPanel" type="PanelContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBox" type="VBoxContainer" parent="HBox/NormalPanel"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBox/NormalPanel/VBox"]
+layout_mode = 2
+text = "普通"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="HBox/NormalPanel/VBox"]
+layout_mode = 2
+text = "标准难度
+需要合理资源分配
+正常事件频率"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Budget" type="Label" parent="HBox/NormalPanel/VBox"]
+layout_mode = 2
+text = "初始预算: 50万"
+horizontal_alignment = 1
+
+[node name="SelectButton" type="Button" parent="HBox/NormalPanel/VBox"]
+layout_mode = 2
+text = "选择"
+
+[node name="HardPanel" type="PanelContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBox" type="VBoxContainer" parent="HBox/HardPanel"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="HBox/HardPanel/VBox"]
+layout_mode = 2
+text = "困难"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="HBox/HardPanel/VBox"]
+layout_mode = 2
+text = "紧张的资金
+挑剔的学生
+频繁的危机"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Budget" type="Label" parent="HBox/HardPanel/VBox"]
+layout_mode = 2
+text = "初始预算: 30万"
+horizontal_alignment = 1
+
+[node name="SelectButton" type="Button" parent="HBox/HardPanel/VBox"]
+layout_mode = 2
+text = "选择"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 600.0
+offset_right = 740.0
+offset_bottom = 640.0
+text = "返回"
