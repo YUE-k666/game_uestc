@@ -1,0 +1,104 @@
+{
+  "事件": [
+    {
+      "event_id": "health_inspection",
+      "event_type": "inspection",
+      "name": "卫生检查",
+      "description": "市卫生局对食堂进行突击检查，卫生不达标将面临罚款",
+      "trigger_conditions": {"min_day": 5, "probability": 0.2},
+      "effects": [{"target": "satisfaction_cafeteria", "change": -5}],
+      "choices": [
+        {"text": "加强清洁（花费3000元）", "cost": 3000, "satisfaction_recovery": 5},
+        {"text": "临时应付（花费500元）", "cost": 500, "satisfaction_recovery": -3}
+      ]
+    },
+    {
+      "event_id": "pipe_leak",
+      "event_type": "breakdown",
+      "name": "管道漏水",
+      "description": "硕丰苑某组团热水管道破裂，大量热水浪费",
+      "trigger_conditions": {"min_day": 10, "probability": 0.15},
+      "effects": [{"target": "satisfaction_dormitory", "change": -8}],
+      "choices": [
+        {"text": "紧急抢修（花费8000元）", "cost": 8000, "satisfaction_recovery": 8},
+        {"text": "等待明天维修（花费2000元）", "cost": 2000, "satisfaction_recovery": -5}
+      ]
+    },
+    {
+      "event_id": "power_outage",
+      "event_type": "breakdown",
+      "name": "宿舍停电",
+      "description": "部分宿舍楼突发停电，学生怨声载道",
+      "trigger_conditions": {"min_day": 8, "probability": 0.12},
+      "effects": [{"target": "satisfaction_dormitory", "change": -10}],
+      "choices": [
+        {"text": "紧急抢修（花费5000元）", "cost": 5000, "satisfaction_recovery": 10},
+        {"text": "等待明天自然恢复", "cost": 0, "satisfaction_recovery": -5}
+      ]
+    },
+    {
+      "event_id": "ingredient_price_hike",
+      "event_type": "price_shock",
+      "name": "食材涨价",
+      "description": "市场猪肉价格突然上涨30%，食堂成本增加",
+      "trigger_conditions": {"min_day": 15, "probability": 0.18},
+      "effects": [{"target": "satisfaction_cafeteria", "change": -3}],
+      "choices": [
+        {"text": "自行消化成本", "cost": 15000, "satisfaction_recovery": 0},
+        {"text": "适当提高售价", "cost": 0, "satisfaction_recovery": -5}
+      ]
+    },
+    {
+      "event_id": "exam_week",
+      "event_type": "periodic",
+      "name": "考试周",
+      "description": "期末考试周来临，学生压力增大，对后勤服务更敏感",
+      "trigger_conditions": {"semester_week": [17, 18]},
+      "is_periodic": true,
+      "period_trigger": {"semester_week": [17, 18], "name": "考试周"},
+      "effects": [{"target": "satisfaction_cafeteria", "change": -2}, {"target": "satisfaction_dormitory", "change": -2}],
+      "choices": [
+        {"text": "延长食堂营业时间（花费5000元）", "cost": 5000, "satisfaction_recovery": 5},
+        {"text": "保持正常运营", "cost": 0, "satisfaction_recovery": -2}
+      ]
+    },
+    {
+      "event_id": "financial_crisis",
+      "event_type": "breakdown",
+      "name": "财务危机",
+      "description": "预算余额告急，需要紧急调整运营策略",
+      "trigger_conditions": {"budget_below": 50000},
+      "effects": [{"target": "satisfaction_cafeteria", "change": -3}],
+      "choices": [
+        {"text": "削减服务质量", "cost": 0, "satisfaction_recovery": -8},
+        {"text": "申请紧急拨款（下学期预算减少20%）", "cost": 0, "satisfaction_recovery": 3}
+      ]
+    },
+    {
+      "event_id": "student_protest",
+      "event_type": "inspection",
+      "name": "学生维权",
+      "description": "学生对宿舍条件不满，发起联名投诉",
+      "trigger_conditions": {"min_day": 20, "probability": 0.1, "satisfaction_below": 55},
+      "effects": [{"target": "satisfaction_dormitory", "change": -5}],
+      "choices": [
+        {"text": "承诺改善并立即行动（花费20000元）", "cost": 20000, "satisfaction_recovery": 8},
+        {"text": "召开座谈会安抚", "cost": 0, "satisfaction_recovery": -2}
+      ]
+    },
+    {
+      "event_id": "food_festival",
+      "event_type": "periodic",
+      "name": "美食节",
+      "description": "学校举办美食节活动，食堂客流量大增",
+      "trigger_conditions": {"semester_week": [5, 10, 15]},
+      "is_periodic": true,
+      "period_trigger": {"semester_week": [5, 10, 15], "name": "美食节"},
+      "effects": [{"target": "satisfaction_cafeteria", "change": 3}],
+      "choices": [
+        {"text": "全力配合（花费8000元）", "cost": 8000, "satisfaction_recovery": 5},
+        {"text": "正常参与", "cost": 0, "satisfaction_recovery": 3}
+      ]
+    }
+  ]
+}

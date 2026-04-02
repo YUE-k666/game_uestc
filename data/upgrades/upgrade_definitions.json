@@ -1,0 +1,16 @@
+{
+  "食堂窗口升级": {
+    "1": {"cost": 0, "construction_days": 0, "service_speed_bonus": 0, "quality_bonus": 0, "queue_capacity_bonus": 0, "description": "基础窗口"},
+    "2": {"cost": 5000, "construction_days": 2, "service_speed_bonus": 5, "quality_bonus": 5, "queue_capacity_bonus": 2, "description": "改良窗口：服务速度+5，菜品品质+5"},
+    "3": {"cost": 15000, "construction_days": 3, "service_speed_bonus": 10, "quality_bonus": 10, "queue_capacity_bonus": 5, "description": "精品窗口：服务速度+10，菜品品质+10"},
+    "4": {"cost": 30000, "construction_days": 4, "service_speed_bonus": 18, "quality_bonus": 15, "queue_capacity_bonus": 8, "description": "豪华窗口：服务速度+18，菜品品质+15"},
+    "5": {"cost": 50000, "construction_days": 5, "service_speed_bonus": 25, "quality_bonus": 20, "queue_capacity_bonus": 10, "description": "顶级窗口：服务速度+25，菜品品质+20"}
+  },
+  "宿舍组团升级": {
+    "1": {"cost": 0, "construction_days": 0, "satisfaction_bonus": 0, "capacity_bonus": 0, "description": "基础宿舍"},
+    "2": {"cost": 20000, "construction_days": 5, "satisfaction_bonus": 3, "capacity_bonus": 10, "description": "改善宿舍：满意度+3"},
+    "3": {"cost": 50000, "construction_days": 7, "satisfaction_bonus": 6, "capacity_bonus": 20, "description": "优质宿舍：满意度+6"},
+    "4": {"cost": 100000, "construction_days": 10, "satisfaction_bonus": 10, "capacity_bonus": 30, "description": "精品宿舍：满意度+10"},
+    "5": {"cost": 200000, "construction_days": 14, "satisfaction_bonus": 15, "capacity_bonus": 50, "description": "顶级宿舍：满意度+15"}
+  }
+}

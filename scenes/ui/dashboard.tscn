@@ -1,0 +1,153 @@
+[gd_scene format=3]
+
+[node name="Dashboard" type="PanelContainer"]
+custom_minimum_size = Vector2(380, 600)
+offset_left = 880.0
+offset_top = 40.0
+offset_right = 1260.0
+offset_bottom = 660.0
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBox"]
+layout_mode = 2
+text = "数据看板"
+horizontal_alignment = 1
+
+[node name="WarningBanner" type="PanelContainer" parent="VBox"]
+visible = false
+layout_mode = 2
+
+[node name="WarningLabel" type="Label" parent="VBox/WarningBanner"]
+layout_mode = 2
+text = "⚠ 满意度低于警戒线"
+horizontal_alignment = 1
+
+[node name="OverallContainer" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="OverallLabel" type="Label" parent="VBox/OverallContainer"]
+layout_mode = 2
+text = "综合满意度:"
+
+[node name="OverallBar" type="ProgressBar" parent="VBox/OverallContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 75.0
+
+[node name="OverallValue" type="Label" parent="VBox/OverallContainer"]
+layout_mode = 2
+text = "75.0"
+
+[node name="CafeteriaBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/CafeteriaBar"]
+layout_mode = 2
+text = "食堂:"
+
+[node name="Bar" type="ProgressBar" parent="VBox/CafeteriaBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 70.0
+
+[node name="Value" type="Label" parent="VBox/CafeteriaBar"]
+layout_mode = 2
+text = "70.0"
+
+[node name="DormitoryBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/DormitoryBar"]
+layout_mode = 2
+text = "宿舍:"
+
+[node name="Bar" type="ProgressBar" parent="VBox/DormitoryBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 80.0
+
+[node name="Value" type="Label" parent="VBox/DormitoryBar"]
+layout_mode = 2
+text = "80.0"
+
+[node name="TeachingBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/TeachingBar"]
+layout_mode = 2
+text = "教学:"
+
+[node name="Bar" type="ProgressBar" parent="VBox/TeachingBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 70.0
+
+[node name="Value" type="Label" parent="VBox/TeachingBar"]
+layout_mode = 2
+text = "70.0"
+
+[node name="EntertainmentBar" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/EntertainmentBar"]
+layout_mode = 2
+text = "文娱:"
+
+[node name="Bar" type="ProgressBar" parent="VBox/EntertainmentBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 65.0
+
+[node name="Value" type="Label" parent="VBox/EntertainmentBar"]
+layout_mode = 2
+text = "65.0"
+
+[node name="Separator" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="FinancialInfo" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="BudgetLabel" type="Label" parent="VBox/FinancialInfo"]
+layout_mode = 2
+text = "预算余额: --"
+
+[node name="ProfitLabel" type="Label" parent="VBox/FinancialInfo"]
+layout_mode = 2
+text = "累计利润: --"
+
+[node name="ReputationInfo" type="Label" parent="VBox"]
+layout_mode = 2
+text = "学校声望: --"
+
+[node name="Separator2" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="TrendChartLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "趋势图 (近7天)"
+
+[node name="TrendChart" type="Control" parent="VBox"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 120)
+
+[node name="Separator3" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="EventLogLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "事件日志"
+
+[node name="EventLogContainer" type="ScrollContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventLogList" type="VBoxContainer" parent="VBox/EventLogContainer"]
+layout_mode = 2
