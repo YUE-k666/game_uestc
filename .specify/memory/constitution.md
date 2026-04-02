@@ -1,50 +1,112 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+  同步影响报告
+  ============
+  版本变更：1.0.0 → 1.1.0（游戏设计约束修正）
+  修改的原则：
+    - 游戏设计约束 - 时间模型：从"MVP不采用实时模拟"修正为"实时推进，
+      四档速度控制"
+  新增章节：无
+  移除章节：无
+  模板兼容性：
+    - .specify/templates/plan-template.md：✅ 兼容
+    - .specify/templates/spec-template.md：✅ 兼容
+    - .specify/templates/tasks-template.md：✅ 兼容
+  后续待办：无
+-->
 
-## Core Principles
+# 《重生之我在电子科大干后勤》项目宪章
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+## 核心原则
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### I. Godot 4 + GDScript 优先
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+所有游戏逻辑和玩法系统必须使用 GDScript 实现，目标引擎为 Godot 4.x。
+GDScript 插件或第三方 Godot 插件（GDScript 编写的）可以使用。
+仅当性能分析证明存在无法在 GDScript 中解决的瓶颈时，才允许使用 C++
+或 GDExtension 模块。
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**原因**：GDScript 是 Godot 4 的原生脚本语言，直接使用可减少集成摩擦，
+保持代码库的可访问性，避免跨语言构建的复杂性。
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. 像素风视觉标准
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+所有视觉资源必须使用统一的像素风风格，保持一致的原始分辨率
+（如 32×32 或 48×48 的瓦片尺寸）。美术资源必须来自开源素材库
+（许可证兼容）或自行绘制。未经明确批准，不得使用商业素材包。
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**原因**：像素风降低美术制作成本，确保所有精灵图在视觉上保持一致，
+并符合独立游戏的美学风格。固定瓦片尺寸简化地图编辑和碰撞检测。
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### III. MVP 范围锁定
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+MVP 必须且仅包含三个玩法模块：校园地图、食堂管理、宿舍管理。
+在 MVP 功能完整且可端到端试玩之前，不得实现任何额外的后勤子系统
+（道路、体育设施、洗衣房等）。
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+**原因**：窄范围防止功能蔓延，确保核心玩法循环
+（配置 → 观察反馈 → 平衡满意度与利润）在扩展前得到验证。
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### IV. 满意度-经济双轴博弈
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+每个游戏决策必须至少影响以下两个轴之一：学生满意度和财务利润。
+游戏必须强制执行最低满意度门槛（及格线），低于该门槛则进入失败状态。
+不存在能同时最大化两个轴且无需做出有意义权衡的策略。
+
+**原因**：满意度与利润之间的张力是定义性的核心玩法循环。
+移除这一二元性将消除核心挑战。
+
+### V. 模块化子系统架构
+
+每个后勤子系统（食堂、宿舍、校园地图）必须实现为独立模块，
+具有明确定义的接口。子系统之间不得直接访问彼此的内部状态，
+必须通过共享的事件总线或信号系统通信。添加新子系统时，
+不得修改现有子系统的代码。
+
+**原因**：模块化架构支持渐进式扩展（MVP 之后的子系统），
+并通过隔离每个系统的逻辑来简化测试。
+
+### VI. 数据驱动配置
+
+所有可调的游戏参数（价格、质量等级、满意度权重、时间段、成本等）
+必须存储在外部数据文件中（JSON、Resource 文件或 CSV）。
+游戏逻辑脚本必须在运行时读取这些值；代码中不得出现魔法数字。
+设计师必须能通过编辑数据文件来调整游戏平衡，而无需接触 GDScript 代码。
+
+**原因**：将数据与逻辑分离可加速游戏平衡的迭代，
+支持模组化，并允许非程序员调整游戏体验。
+
+## 技术约束
+
+- 引擎：Godot 4.x LTS 版本
+- 语言：GDScript（例外情况见原则 I）
+- 美术工具链：推荐使用 Aseprite 或 LibreSprite 制作像素风素材；
+  任何能导出统一调色板 PNG 的工具均可接受
+- 版本控制：Git；大型二进制资源（精灵表、音频）必须使用 Git LFS
+- 目标平台：桌面端（Linux、Windows、macOS）用于 MVP；移动端不在范围内
+
+## 游戏设计约束
+
+- 摄像机视角：2D 俯视角，使用像素风瓦片（正交视角）；
+  MVP 不考虑 2.5D 或等距视角
+- 时间模型：游戏内时间实时推进，支持四档速度控制
+  （暂停/正常/快进/极速），按"时段→日→周→学期"三级循环；
+  学生在地图上实时移动可见
+- 存档系统：游戏状态必须能序列化为单个 JSON 文件
+- UI 框架：使用 Godot 内置的 Control 节点；不使用外部 UI 库
+
+## 开发流程
+
+- 功能开发遵循 speckit 流程：宪章 → 规格说明 → 计划 → 任务 → 实施
+- 每个玩法模块（食堂、宿舍、地图）作为独立功能分支处理
+- 每个模块集成后必须产出可试玩的构建版本
+- 提交代码前应运行 GDScript 静态分析（gdformat、gdlint）
+
+## 治理规则
+
+- 本宪章优先于未记录的惯例。
+- 修订要求：(a) 书面理由，(b) 按语义化版本号规则递增版本号，
+  (c) 跨 spec/plan/task 模板进行传播检查。
+- 所有功能规格说明和实施计划在进入实施前必须通过宪法检查门控。
+- 超出本宪章原则所引入的复杂性，必须在计划的复杂度跟踪表中说明理由。
+
+**版本**：1.1.0 | **批准日期**：2026-04-01 | **最后修订**：2026-04-01
